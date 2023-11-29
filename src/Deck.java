@@ -36,8 +36,8 @@ public class Deck {
     public void shuffle() {
         for (int i = cards.size() - 1; i >= 0; i--) {
             int randomIndex = (int)(Math.random() * cards.size());
-            cards.set(i, cards.remove(randomIndex));
-            cards.set(randomIndex, cards.remove(i - 1));
+            cards.add(i, cards.remove(randomIndex));
+            cards.add(randomIndex, cards.remove(i - 1));
         }
         cardsLeft = cards.size();
     }
