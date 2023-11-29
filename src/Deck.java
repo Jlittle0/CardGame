@@ -38,7 +38,6 @@ public class Deck {
             int randomIndex = (int)(Math.random() * cards.size());
             cards.set(i, cards.remove(randomIndex));
             cards.set(randomIndex, cards.remove(i - 1));
-
         }
         cardsLeft = cards.size();
     }
