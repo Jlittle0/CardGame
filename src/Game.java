@@ -13,6 +13,7 @@ public class Game {
         int[] points = {14, 2, 3 , 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
         mainDeck = new Deck(ranks, suits, points);
         subDeck = new Deck(ranks, suits, points);
+        // test
     }
 
     public String printDeck() {
