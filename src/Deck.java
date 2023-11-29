@@ -34,12 +34,20 @@ public class Deck {
     }
 
     public void shuffle() {
-        for (int i = cards.size() - 1; i >= 0; i--) {
+        for (int i = cards.size() - 1; i > 0; i--) {
             int randomIndex = (int)(Math.random() * cards.size());
             cards.add(i, cards.remove(randomIndex));
             cards.add(randomIndex, cards.remove(i - 1));
         }
         cardsLeft = cards.size();
+    }
+
+    public String toString() {
+        String stuff = "";
+        for (int i = 0; i < cards.size(); i++) {
+            stuff += "[" + cards.get(i).toString() + "], \n";
+        }
+        return stuff + "total cards: " + cards.size() + "\n";
     }
 
 }
