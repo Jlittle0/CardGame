@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Finished the basics (including instance variables and method) for the Card class, Deck class, and Player class.">
+    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Created part of the game constructor.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,13 +94,30 @@
       <option name="project" value="LOCAL" />
       <updated>1701281757601</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finished the basics (including instance variables and method) for the Card class, Deck class, and Player class.">
+      <option name="closed" value="true" />
+      <created>1701287720787</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701287720788</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Created part of the game constructor.">
+      <option name="closed" value="true" />
+      <created>1701287758306</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701287758306</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="I" />
     <MESSAGE value="Created a card constructor." />
     <MESSAGE value="Finished the basics (including instance variables and method) for the Card class, Deck class, and Player class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished the basics (including instance variables and method) for the Card class, Deck class, and Player class." />
+    <MESSAGE value="Created part of the game constructor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created part of the game constructor." />
   </component>
 </project>
