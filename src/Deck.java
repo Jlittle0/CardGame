@@ -4,6 +4,7 @@ public class Deck {
 
     private ArrayList<Card> cards;
     private static int cardsLeft;
+    private boolean isHidden;
 
     public Deck(String[] ranks, String[] suits, int[] points) {
        cards = new ArrayList<Card>();
@@ -13,6 +14,12 @@ public class Deck {
            }
        }
        cardsLeft = cards.size();
+       isHidden = true;
+    }
+    public Deck() {
+        cards = new ArrayList<Card>();
+        cardsLeft = cards.size();
+        isHidden = true;
     }
 
     public boolean isEmpty() {
@@ -40,6 +47,21 @@ public class Deck {
             cards.add(randomIndex, cards.remove(i - 1));
         }
         cardsLeft = cards.size();
+    }
+
+    public boolean isHidden() {
+        if (isHidden == true) {
+            return true;
+        }
+        return false;
+    }
+
+    public void hide() {
+        isHidden = true;
+    }
+
+    public void show() {
+        isHidden = false;
     }
 
     public String toString() {

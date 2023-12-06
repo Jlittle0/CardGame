@@ -8,6 +8,10 @@ public class Game {
     private Deck subDeck;
     private Scanner input;
     private boolean gameState;
+    private int player1Cash;
+    private int player2Cash;
+    private Deck player1Hand;
+    private Deck player2Hand;
 
     public Game() {
         players = new ArrayList<Player>();
@@ -18,6 +22,10 @@ public class Game {
         subDeck = new Deck(ranks, suits, points);
         input = new Scanner(System.in);
         gameState = false;
+        player1Cash = 1000;
+        player2Cash = 1000;
+        player1Hand = new Deck();
+        player2Hand = new Deck();
         // test
     }
 
@@ -31,37 +39,54 @@ public class Game {
         System.out.println("                                       PPP        PPP   OOO             OOO  KKK     KKK         EEE                RRR           RRR");
         System.out.println("                                       PPP      PPP     OOO             OOO  KKK   KKK           EEE                RRR          RRR   ");
         System.out.println("                                       PPP     PPP      OOO             OOO  KKK KKK             EEEEEEE            RRR      RRR");
-        System.out.println("                                       PPPPPPP          OOO             OOO  KKK KKK             EEE                RRRRRRRR");
-        System.out.println("                                       PPP              OOO             OOO  KKK   KKK           EEE                RRR   RRR");
-        System.out.println("                                       PPP              OOO             OOO  KKK     KKK         EEE                RRR      RRR");
-        System.out.println("                                       PPP               OOO           OOO   KKK       KKK       EEE                RRR        RRR");
-        System.out.println("                                       PPP                 OOO       OOO     KKK         KKK     EEEEEEEE           RRR          RRR");
-        System.out.println("                                       PPP                    OOOOOO         KKK           KKK   EEEEEEEEEEEEEEEEE  RRR            RRR");
-        System.out.println("\n\n\n");
-        System.out.println("                                                       If you would like to begin playing the game, press (Y)");
-        System.out.println("                                                           if you are finished playing, press (Q)");
+        System.out.println("                                       PPPPPPP          OOO             OOO  KKK   KKK           EEE                RRRRRRRR");
+        System.out.println("                                       PPP              OOO             OOO  KKK     KKK         EEE                RRR   RRR");
+        System.out.println("                                       PPP              OOO             OOO  KKK       KKK       EEE                RRR      RRR");
+        System.out.println("                                       PPP               OOO           OOO   KKK         KKK     EEE                RRR        RRR");
+        System.out.println("                                       PPP                 OOO       OOO     KKK           KKK   EEEEEEEE           RRR          RRR");
+        System.out.println("                                       PPP                    OOOOOO         KKK            KKK  EEEEEEEEEEEEEEEEE  RRR            RRR");
+        System.out.println("\n\n");
+        System.out.println("                                                      If you would like to begin playing the game, press (Y)");
+        System.out.println("                                                            if you are finished playing, press (Q)");
+        System.out.println("                                                                      Instructions: (I)");
     }
 
     public void printTable() {
-        System.out.println("                                                          #########################################################");
-        System.out.println("                                                ##########                                                         ########");
-        System.out.println("                                            ###                                                                             ###");
-        System.out.println("                                          ###                                                                                 ###");
-        System.out.println("                                        ###                                                                                     ###");
-        System.out.println("                                      ###                                                                                         ###");
-        System.out.println("                                    ###                                                                                             ###");
-        System.out.println("                                   ##                                                                                                 ##");
-        System.out.println("                                   ##                                                                                                 ##");
-        System.out.println("                                   ##                                                                                                 ##");
-        System.out.println("                                   ##                                                                                                 ##");
-        System.out.println("                                   ##                                                                                                 ##");
-        System.out.println("                                    ###                                                                                             ###");
-        System.out.println("                                      ###                                                                                         ###");
-        System.out.println("                                        ###                                                                                     ###");
-        System.out.println("                                          ###                                                                                 ###");
-        System.out.println("                                            ###                                                                             ###");
-        System.out.println("                                                ##########                                                         ########");
-        System.out.println("                                                          #########################################################");
+        System.out.println("\n\n\n\n\n");
+        System.out.println("                                                     #########################################################");
+        System.out.println("                                           ##########                                                         ########");
+        System.out.println("                                       ###                           P2 Hand:                                          ###");
+        System.out.println("                                     ###                                                                                 ###");
+        System.out.println("                                   ###                                                                                     ###");
+        System.out.println("                                 ###                                                                                         ###");
+        System.out.println("                               ###                                                                                             ###");
+        System.out.println("                              ##                                                                                                 ##");
+        System.out.println("                              ##                                                                                                 ##");
+        System.out.println("                              ##                                                                                                 ##");
+        System.out.println("                              ##                                                                                                 ##");
+        System.out.println("                              ##                                                                                                 ##");
+        System.out.println("________________               ###                                                                                             ###                 ________________");
+        System.out.println("|Player 1      |                 ###                                                                                         ###                   |Player 2      |");
+        if (player1Cash / 1000 >= 1) {
+            System.out.println("|Cash: " + player1Cash + "    |                   ###                                                                                     ###                     |Cash:         |");
+        }
+        else {
+            System.out.println("|Cash:" + player1Cash + "      |                   ###                                                                                     ###                     |Cash:         |");
+        }
+        if (player1Hand.isHidden()) {
+            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand:         |");
+        }
+        else {
+            System.out.println("|Hand:         |                     ###                                                                                 ###                       |Hand:         |");
+        }
+        System.out.println("|Action:       |                       ###                           P1 Hand:                                          ###                         |Action:       |");
+        System.out.println("|              |                           ##########                                                         ########                             |              |");
+        System.out.println("|_____________ |                                     #########################################################                                     |______________|");
+        System.out.println("\n");
+    }
+
+    public void printInstructions() {
+        System.out.println("Welcome to Josh's poker game. At this table, you will be playing Texas Holdem, one of the classic styles of poker.");
     }
 
     public void clearScreen() {
@@ -80,7 +105,11 @@ public class Game {
     }
 
     public void playPlayer() {
+        if (player1Hand.isEmpty()) {
+
+        }
         printTable();
+
 
     }
 
@@ -103,11 +132,13 @@ public class Game {
                 else {
                     System.out.println("Bruh");
                 }
-
             }
             else if (userInput.equals("Q") || userInput.equals("q")) {
                 System.out.println("Goodbye!");
                 System.exit(0);
+            }
+            else if (userInput.equals("I") || userInput.equals("i")) {
+                printInstructions();
             }
             else {
                 System.out.println("Please enter a valid character");

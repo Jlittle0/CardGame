@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Created part of the game constructor.">
+    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Finished the print welcome and part of the play method that leads the user into selecting whether or not they would like to play against a real player or a computer for their match.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701287758306</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Finished the print welcome and part of the play method that leads the user into selecting whether or not they would like to play against a real player or a computer for their match.">
+      <option name="closed" value="true" />
+      <created>1701730732710</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701730732710</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -118,6 +127,7 @@
     <MESSAGE value="Created a card constructor." />
     <MESSAGE value="Finished the basics (including instance variables and method) for the Card class, Deck class, and Player class." />
     <MESSAGE value="Created part of the game constructor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created part of the game constructor." />
+    <MESSAGE value="Finished the print welcome and part of the play method that leads the user into selecting whether or not they would like to play against a real player or a computer for their match." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished the print welcome and part of the play method that leads the user into selecting whether or not they would like to play against a real player or a computer for their match." />
   </component>
 </project>
