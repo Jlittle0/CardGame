@@ -8,10 +8,8 @@ public class Game {
     private Deck subDeck;
     private Scanner input;
     private boolean gameState;
-    private int player1Cash;
-    private int player2Cash;
-    private Deck player1Hand;
-    private Deck player2Hand;
+    private Player player1;
+    private Player player2;
 
     public Game() {
         players = new ArrayList<Player>();
@@ -22,10 +20,9 @@ public class Game {
         subDeck = new Deck(ranks, suits, points);
         input = new Scanner(System.in);
         gameState = false;
-        player1Cash = 1000;
-        player2Cash = 1000;
-        player1Hand = new Deck();
-        player2Hand = new Deck();
+        player1 = new Player("name");
+        player2 = new Player("name");
+
         // test
     }
 
@@ -67,14 +64,32 @@ public class Game {
         System.out.println("                              ##                                                                                                 ##");
         System.out.println("________________               ###                                                                                             ###                 ________________");
         System.out.println("|Player 1      |                 ###                                                                                         ###                   |Player 2      |");
-        if (player1Cash / 1000 >= 1) {
-            System.out.println("|Cash: " + player1Cash + "    |                   ###                                                                                     ###                     |Cash:         |");
+        if (player1.getCash() / 1000 >= 1 && player2.getCash() >= player1.getCash()) {
+            System.out.println("|Cash: $" + player1.getCash() + "   |                   ###                                                                                     ###                     |Cash: $" + player2.getCash() + "   |");
+        }
+        else if (player1.getCash() / 1000 == 0 && player2.getCash() / 1000 >= 1) {
+            System.out.println("|Cash: $" + player1.getCash() + "    |                   ###                                                                                     ###                     |Cash: $" + player2.getCash() + "   |");
+        }
+        else if (player1.getCash() / 1000 >= 1 && player2.getCash() / 1000 == 0) {
+            System.out.println("|Cash: $" + player1.getCash() + "   |                   ###                                                                                     ###                     |Cash: $" + player2.getCash() + "    |");
+        }
+        else if (player1.getCash() / 1000 == 0 && player2.getCash() == 0) {
+            System.out.println("|Cash: $" + player1.getCash() + "    |                   ###                                                                                     ###                     |Cash: $" + player2.getCash() + "    |");
         }
         else {
-            System.out.println("|Cash:" + player1Cash + "      |                   ###                                                                                     ###                     |Cash:         |");
+            System.out.println("|Cash:" + player1.getCash() + "      |                   ###                                                                                     ###                     |Cash:         |");
         }
-        if (player1Hand.isHidden()) {
-            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand:         |");
+        if (player1.isHidden() && player2.isHidden()) {
+            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand: ?? ??   |");
+        }
+        else if (player1.isHidden() && !player2.isHidden()) {
+            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand: " + player2.getHand(0) + " " + player2.getHand(1) + "   |");
+        }
+        else if (!player1.isHidden() && player2.isHidden()) {
+            System.out.println("|Hand: " + player1.getHand(0) + " " + player1.getHand(1) + "   |                     ###                                                                                 ###                       |Hand: ?? ??   |");
+        }
+        else if (!player1.isHidden() && !player2.isHidden()) {
+            System.out.println("|Hand: " + player1.getHand(0) + " " + player1.getHand(1) + "   |                     ###                                                                                 ###                       |Hand: " + player2.getHand(0) + " " + player2.getHand(1) + "   |");
         }
         else {
             System.out.println("|Hand:         |                     ###                                                                                 ###                       |Hand:         |");
@@ -105,9 +120,10 @@ public class Game {
     }
 
     public void playPlayer() {
-        if (player1Hand.isEmpty()) {
-
-        }
+        player1.addCard(mainDeck.deal());
+        player1.addCard(subDeck.deal());
+        player2.addCard(mainDeck.deal());
+        player2.addCard(subDeck.deal());
         printTable();
 
 

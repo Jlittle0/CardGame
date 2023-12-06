@@ -49,20 +49,6 @@ public class Deck {
         cardsLeft = cards.size();
     }
 
-    public boolean isHidden() {
-        if (isHidden == true) {
-            return true;
-        }
-        return false;
-    }
-
-    public void hide() {
-        isHidden = true;
-    }
-
-    public void show() {
-        isHidden = false;
-    }
 
     public String toString() {
         String stuff = "";
