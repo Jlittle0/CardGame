@@ -10,6 +10,16 @@ public class Game {
     private boolean gameState;
     private Player player1;
     private Player player2;
+    private Player dealer;
+    private String lastAction;
+    private String currentAction;
+    private boolean roundOver;
+    private int currentBet;
+    private int currentTotalBet;
+    private static int turnNumber;
+    private Player winner;
+    private int minimumBet;
+    public static int cardsDrawn;
 
     public Game() {
         players = new ArrayList<Player>();
@@ -20,9 +30,10 @@ public class Game {
         subDeck = new Deck(ranks, suits, points);
         input = new Scanner(System.in);
         gameState = false;
-        player1 = new Player("name");
-        player2 = new Player("name");
-
+        player1 = new Player("");
+        player2 = new Player("");
+        dealer = new Player("dealer");
+        minimumBet = 50;
         // test
     }
 
@@ -49,54 +60,68 @@ public class Game {
     }
 
     public void printTable() {
-        System.out.println("\n\n\n\n\n");
+        currentTotalBet = player1.getBet() + player2.getBet();
+        System.out.println("\n\n\n\n");
         System.out.println("                                                     #########################################################");
         System.out.println("                                           ##########                                                         ########");
-        System.out.println("                                       ###                           P2 Hand:                                          ###");
-        System.out.println("                                     ###                                                                                 ###");
+        System.out.println("                                       ###                                                                             ###");
+        System.out.print("                                     ###                           Dealer: ");
+        for (int i = 0; i < dealer.getHand().size(); i++) {
+            System.out.print(dealer.getCard(i) + " ");
+        }
+        for (int i = 0; i < 5 - dealer.getHand().size(); i++) {
+            System.out.print("__ ");
+        }
+        System.out.println("                               ###");
         System.out.println("                                   ###                                                                                     ###");
         System.out.println("                                 ###                                                                                         ###");
         System.out.println("                               ###                                                                                             ###");
         System.out.println("                              ##                                                                                                 ##");
         System.out.println("                              ##                                                                                                 ##");
-        System.out.println("                              ##                                                                                                 ##");
+        System.out.print("                              ##                                     current pool: $" + currentTotalBet);
+        for (int i = 0; i < 5 - checkLength(currentTotalBet); i++) {
+            System.out.print(" ");
+        }
+        System.out.println("                                        ##");
         System.out.println("                              ##                                                                                                 ##");
         System.out.println("                              ##                                                                                                 ##");
         System.out.println("________________               ###                                                                                             ###                 ________________");
         System.out.println("|Player 1      |                 ###                                                                                         ###                   |Player 2      |");
-        if (player1.getCash() / 1000 >= 1 && player2.getCash() >= player1.getCash()) {
-            System.out.println("|Cash: $" + player1.getCash() + "   |                   ###                                                                                     ###                     |Cash: $" + player2.getCash() + "   |");
+        System.out.print("|Cash: $" + player1.getCash());
+        for (int i = 0; i < 7 - checkLength(player1.getCash()); i++) {
+            System.out.print(" ");
         }
-        else if (player1.getCash() / 1000 == 0 && player2.getCash() / 1000 >= 1) {
-            System.out.println("|Cash: $" + player1.getCash() + "    |                   ###                                                                                     ###                     |Cash: $" + player2.getCash() + "   |");
+        System.out.print("|                   ###                                                                                     ###                     |Cash: $" + player2.getCash());
+        for (int i = 0; i < 7 - checkLength(player2.getCash()); i++) {
+            System.out.print(" ");
         }
-        else if (player1.getCash() / 1000 >= 1 && player2.getCash() / 1000 == 0) {
-            System.out.println("|Cash: $" + player1.getCash() + "   |                   ###                                                                                     ###                     |Cash: $" + player2.getCash() + "    |");
+        System.out.println("|");
+//        if (player1.isHidden() && player2.isHidden()) {
+//            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand: ?? ??   |");
+//        }
+//        else if (player1.isHidden() && !player2.isHidden()) {
+//            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand: " + player2.getCard(0) + " " + player2.getCard(1) + "   |");
+//        }
+//        else if (!player1.isHidden() && player2.isHidden()) {
+//            System.out.println("|Hand: " + player1.getCard(0) + " " + player1.getCard(1) + "   |                     ###                                                                                 ###                       |Hand: ?? ??   |");
+//        }
+//        else if (!player1.isHidden() && !player2.isHidden()) {
+            System.out.println("|Hand: " + player1.getCard(0) + " " + player1.getCard(1) + "   |                     ###                                                                                 ###                       |Hand: " + player2.getCard(0) + " " + player2.getCard(1) + "   |");
+//        }
+//        else {
+//            System.out.println("|Hand:         |                     ###                                                                                 ###                       |Hand:         |");
+//        }
+        System.out.print("|Action: " + player1.getAction());
+        for (int i = 0; i < 6 - player1.getAction().length(); i++) {
+            System.out.print(" ");
         }
-        else if (player1.getCash() / 1000 == 0 && player2.getCash() == 0) {
-            System.out.println("|Cash: $" + player1.getCash() + "    |                   ###                                                                                     ###                     |Cash: $" + player2.getCash() + "    |");
+        System.out.print("|                       ###                                                                             ###                         |Action: " + player2.getAction());
+        for (int i = 0; i < 6 - player2.getAction().length(); i++) {
+            System.out.print(" ");
         }
-        else {
-            System.out.println("|Cash:" + player1.getCash() + "      |                   ###                                                                                     ###                     |Cash:         |");
-        }
-        if (player1.isHidden() && player2.isHidden()) {
-            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand: ?? ??   |");
-        }
-        else if (player1.isHidden() && !player2.isHidden()) {
-            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand: " + player2.getHand(0) + " " + player2.getHand(1) + "   |");
-        }
-        else if (!player1.isHidden() && player2.isHidden()) {
-            System.out.println("|Hand: " + player1.getHand(0) + " " + player1.getHand(1) + "   |                     ###                                                                                 ###                       |Hand: ?? ??   |");
-        }
-        else if (!player1.isHidden() && !player2.isHidden()) {
-            System.out.println("|Hand: " + player1.getHand(0) + " " + player1.getHand(1) + "   |                     ###                                                                                 ###                       |Hand: " + player2.getHand(0) + " " + player2.getHand(1) + "   |");
-        }
-        else {
-            System.out.println("|Hand:         |                     ###                                                                                 ###                       |Hand:         |");
-        }
-        System.out.println("|Action:       |                       ###                           P1 Hand:                                          ###                         |Action:       |");
+        System.out.println("|");
         System.out.println("|              |                           ##########                                                         ########                             |              |");
-        System.out.println("|_____________ |                                     #########################################################                                     |______________|");
+        System.out.println("|______________|                                     #########################################################                                     |______________|");
         System.out.println("\n");
     }
 
@@ -120,13 +145,327 @@ public class Game {
     }
 
     public void playPlayer() {
-        player1.addCard(mainDeck.deal());
-        player1.addCard(subDeck.deal());
-        player2.addCard(mainDeck.deal());
-        player2.addCard(subDeck.deal());
+        System.out.println("Would you like to begin?");
+        String userInput = input.nextLine();
+        while (userInput.toUpperCase().equals("Y")) {
+            round();
+            System.out.println("Would you like to play again?");
+            userInput = input.nextLine();
+        }
+    }
+
+    public Card draw() {
+        cardsDrawn++;
+        if (cardsDrawn % 2 == 1) {
+            return mainDeck.deal();
+        }
+        else {
+            return subDeck.deal();
+        }
+    }
+    public void resetTable() {
+        player1.resetHand();
+        player2.resetHand();
+        dealer.resetHand();
+        player1.setBet(0);
+        player2.setBet(0);
+        mainDeck.shuffle();
+        subDeck.shuffle();
+        player1.addCard(draw());
+        player1.addCard(draw());
+        player2.addCard(draw());
+        player2.addCard(draw());
+    }
+
+    // Returns a value corresponding to the players hand to use to check for the winner
+    public int checkValue(Player player) {
+        boolean isFlush = false; // Whether the current hand contains a flush
+        boolean isStraight = false; // Whether the current hand contains a straight
+        int maxPair = 0; // Highest number of cards with the same point value
+        int maxPairPoints = 0; // Highest value of paired cards
+        int flushCount = 0; // Counter variable used to determine isFlush
+        int straightCount = 0; // Counter variable used to determine isStraight
+
+        ArrayList<Card> allCards = new ArrayList<Card>();
+        ArrayList<Card> uniqueCards = new ArrayList<Card>();
+        // Adding the dealers 5 cards into hand to check overall score
+        for (int i = 0; i < 5; i++) {
+            allCards.add(dealer.getHand().get(i));
+            if (uniqueCards.indexOf(dealer.getHand().get(i)) != -1) {
+                uniqueCards.add(dealer.getHand().get(i));
+            }
+        }
+        // Adding the players 2 cards into hand to check overall score
+        for (int i = 0; i < 2; i++) {
+            allCards.add(player.getHand().get(i));
+            if (uniqueCards.indexOf(player.getHand().get(i)) != -1) {
+                uniqueCards.add(player.getHand().get(i));
+            }
+        }
+        // Bubble sort to make sure the cards are in order (by points)
+        for (int i = 0; i < allCards.size(); i++) {
+            for (int j = 0; j < allCards.size() - 1; j++) {
+                if (allCards.get(j).getPoint() > allCards.get(j + 1).getPoint()) {
+                    allCards.add(j, allCards.remove(j+1));
+                }
+            }
+        }
+
+        for (int i = 0; i < uniqueCards.size(); i++) {
+            for (int j = 0; j < uniqueCards.size() - 1; j++) {
+                if (uniqueCards.get(j).getPoint() > uniqueCards.get(j + 1).getPoint()) {
+                    uniqueCards.add(j, uniqueCards.remove(j+1));
+                }
+            }
+        }
+
+        // Checking the deck for a flush or straight and highest # of pairs
+        for (int i = 0; i < allCards.size(); i++) {
+            int currentPair = 1;
+            int pairPoints = allCards.get(0).getPoint();
+            flushCount = 0;
+            straightCount = 0;
+            for (int j = 1; j < allCards.size(); j++) {
+                if (allCards.get(j).getSuit().equals(allCards.get(j-1).getSuit())) {
+                    flushCount++;
+                }
+                if (allCards.get(j).getPoint() == allCards.get(j-1).getPoint() + 1) {
+                    straightCount++;
+                }
+                if (allCards.get(i).getPoint() == allCards.get(j).getPoint() && j != i) {
+                    currentPair++;
+                    pairPoints += allCards.get(j).getPoint();
+                }
+            }
+            if (flushCount >= 5)
+                isFlush = true;
+            if (straightCount >= 5)
+                isStraight = true;
+            if (currentPair > maxPair)
+                maxPair = currentPair;
+            if (pairPoints > maxPairPoints)
+                maxPairPoints = pairPoints;
+        }
+
+        // Check for royal flush
+        if (uniqueCards.size() == 5 && isFlush && uniqueCards.get(0).getPoint() == 10) {
+            return 100;
+        }
+        // Check for straight flush
+        else if (isStraight && isFlush) {
+            return 90;
+        }
+        // Check for Four of a Kind
+        else if (maxPair == 4) {
+            return 80;
+        }
+        // Check for Full House
+        else if (uniqueCards.size() == 4 && maxPair == 3) {
+            return 70;
+        }
+        // Checking for a flush
+        else if (isFlush) {
+            return 60;
+        }
+        // Checking for a straight
+        else if (isStraight) {
+            return 50;
+        }
+        // Checking for Three of a Kind
+        else if (maxPair == 3) {
+            return 40;
+        }
+        // Checking for multiple pairs
+        else if (maxPair == 2 && uniqueCards.size() <= 5) {
+            return 30;
+        }
+        // Checking for a single pair
+        else if (maxPair == 2) {
+            return 20 + maxPairPoints / 2;
+        }
+        // Returning highCard
+        else {
+            return allCards.get(6).getPoint();
+        }
+    }
+
+    public void round() {
+        // Represents a single "round" of poker
+        roundOver = false;
+        // Resets the table
+        resetTable();
+        // Begings the first set of turns
+        turnCycle();
+        // As long as the game isn't over due to someone folding, continue
+        if (!roundOver) {
+            // Have the dealer draw 3 cards and present them on the table
+            dealer.addCard(draw());
+            dealer.addCard(draw());
+            dealer.addCard(draw());
+            // Continue allowing the players to have their turn and afterwards have the dealer draw until all 5 cards are drawn
+            for (int i = 0; i < 2; i++) {
+                if (roundOver)
+                    break;
+                turnCycle();
+                dealer.addCard(draw());
+            }
+        }
+        // Print the final board and if someone didn't fold, check for the winner
         printTable();
+        if (!roundOver) {
+            // Player 1 wins
+            if (checkValue(player1) > checkValue(player2)) {
+                System.out.println("Player 1 wins!");
+                player1.addPoints(currentTotalBet);
+            }
+            // Player 2 wins
+            else if (checkValue(player1) < checkValue(player2)) {
+                System.out.println("Player 2 wins!");
+                player2.addPoints(currentTotalBet);
+            }
+            // Tie
+            else if (checkValue(player1) == checkValue(player2)) {
+                System.out.println("It's a tie!");
+                player1.addPoints(currentTotalBet / 2);
+                player2.addPoints(currentTotalBet / 2);
+            }
+            else {
+                System.out.println(checkValue(player1));
+                System.out.println(checkValue(player2));
+                System.out.println("Something went wrong");
+            }
+        }
+    }
 
+    public int checkLength(int num) {
+        // Finds the length of a number (used for printing purposes)
+        int value = 10;
+        int digits = 1;
+        while (num >= value){
+            digits++;
+            value *= 10;
+        }
+        return digits;
+    }
 
+    // Represents a single set of turns/actions for the players
+    public void turnCycle() {
+        // Continue to allow players to have their turn until an acceptable conclusion is reached (both checking etc.)
+        while (!player1.getTurnEnd() || !player2.getTurnEnd()) {
+            if (turnNumber % 2 == 0) {
+                printTable();
+                System.out.println("Player 1's Turn:");
+                turn(player1, player2);
+            }
+            else {
+                printTable();
+                System.out.println("Player 2's Turn:");
+                turn(player2, player1);
+            }
+        }
+        // Reset turnEnd booleans used for checking whether the turns are over or not
+        player1.setTurnEnd(false);
+        player2.setTurnEnd(false);
+    }
+
+    // Represents a single turn for a player
+    public void turn(Player player, Player otherPlayer) {
+        // Increased turn number by 1
+        turnNumber++;
+        boolean currentTurn = true;
+        String userInput = input.nextLine();
+        // Asks user for their input for the turn and based on the input, perform actions
+        while (currentTurn) {
+            switch (userInput.toUpperCase()) {
+                case "C":
+                    // Checks if the player can actually call or not and if so proceeds to perform call action
+                    if (lastAction.equals("Raise")) {
+                        player.setAction("Call");
+                        actions(player, otherPlayer, player.getAction());
+                        currentTurn = false;
+                        break;
+                    }
+                    // If the player can't call, let them redo their turn
+                    turnNumber--;
+                    currentTurn = false;
+                    System.out.println("You can't do that");
+                    break;
+                case "R":
+                    // Allows the player to increase their starting bet
+                    player.setAction("Raise");
+                    actions(player, otherPlayer, player.getAction());
+                    currentTurn = false;
+                    break;
+                case "F":
+                    // Lets the player quit a hand if they don't think they're going to win
+                    player.setAction("Fold");
+                    actions(player, otherPlayer, player.getAction());
+                    currentTurn = false;
+                    break;
+                    // Lets the player check
+                case "CHECK":
+                    // Checks if the player can check or whether the other player has raised previously
+                    if (!otherPlayer.getTurnEnd() || otherPlayer.getAction().equals("Check")) {
+                        player.setAction("Check");
+                        actions(player, otherPlayer, player.getAction());
+                        currentTurn = false;
+                        break;
+                    }
+                    // If the other player raised then don't allow the player to check
+                    turnNumber--;
+                    currentTurn = false;
+                    System.out.println("You can't do that");
+                    break;
+                default:
+                    System.out.println(otherPlayer.getBet());
+                    System.out.println("Something went horribly wrong");
+                    System.exit(0);
+                    break;
+            }
+        }
+    }
+
+    public void actions(Player player, Player otherPlayer, String action) {
+        switch (action) {
+            case "Call":
+                lastAction = "Call";
+                player.setBet(currentBet);
+                player.setTurnEnd(true);
+                break;
+            case "Raise":
+                System.out.println("How much would you like to raise by?");
+                int userInput = input.nextInt();
+                input.nextLine();
+                currentBet += userInput;
+                lastAction = "Raise";
+                player.setBet(currentBet);
+                player.setTurnEnd(true);
+                otherPlayer.setTurnEnd(false);
+                break;
+            case "Fold":
+                player.setTurnEnd(true);
+                otherPlayer.setTurnEnd(true);
+                lastAction = "Fold";
+                roundOver = true;
+                otherPlayer.addCash(currentTotalBet);
+                System.out.println(otherPlayer.getName() + "has won! Congratulations.");
+                break;
+            case "Check":
+                player.setAction("Check");
+                player.setTurnEnd(true);
+                lastAction = "Check";
+                break;
+        }
+    }
+
+    public boolean checkRound() {
+        if (player1.getTurnEnd() && player2.getTurnEnd()) {
+            roundOver = true;
+            player1.setTurnEnd(false);
+            player2.setTurnEnd(false);
+            return true;
+        }
+        return false;
     }
 
     public void play() {
