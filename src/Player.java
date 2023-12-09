@@ -96,8 +96,10 @@ public class Player {
 
     public void setBet(int bet) {
         this.bet = bet;
-        cash -= (bet - previousBet);
-        previousBet = bet;
+        if (bet != 0) {
+            cash -= (bet - previousBet);
+            previousBet = bet;
+        }
     }
 
     public boolean getTurnEnd() {

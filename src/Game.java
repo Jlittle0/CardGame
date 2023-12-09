@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -61,7 +62,8 @@ public class Game {
 
     public void printTable() {
         currentTotalBet = player1.getBet() + player2.getBet();
-        System.out.println("\n\n\n\n");
+        System.out.println("\n\n");
+        System.out.println("                              Raise - 'R'       Call - 'C'        Check - 'Check'        Fold - 'F'      Show - 'S'        Hide - 'H'\n");
         System.out.println("                                                     #########################################################");
         System.out.println("                                           ##########                                                         ########");
         System.out.println("                                       ###                                                                             ###");
@@ -145,16 +147,20 @@ public class Game {
     }
 
     public void playPlayer() {
-        System.out.println("Would you like to begin?");
+        // Basically just runs a loop of constantly running rounds until the user decides to stop playing
+        System.out.println("Would you like to begin? (Y/N)");
         String userInput = input.nextLine();
         while (userInput.toUpperCase().equals("Y")) {
             round();
-            System.out.println("Would you like to play again?");
+            System.out.println("Would you like to play again? (Y/N)");
             userInput = input.nextLine();
         }
+        System.out.println("Bye bye!");
     }
 
     public Card draw() {
+        // Decides which deck to draw from based on the current number of cards drawn
+        // since I'm using two different decks to deal cards with
         cardsDrawn++;
         if (cardsDrawn % 2 == 1) {
             return mainDeck.deal();
@@ -164,13 +170,17 @@ public class Game {
         }
     }
     public void resetTable() {
+        // Resets all the players' hands for the new round
         player1.resetHand();
         player2.resetHand();
         dealer.resetHand();
+        // Resets bets back down to $0
         player1.setBet(0);
         player2.setBet(0);
+        // Shuffles the decks which resets them
         mainDeck.shuffle();
         subDeck.shuffle();
+        // Gives two cards to each player for their own hand for the next round
         player1.addCard(draw());
         player1.addCard(draw());
         player2.addCard(draw());
@@ -185,23 +195,44 @@ public class Game {
         int maxPairPoints = 0; // Highest value of paired cards
         int flushCount = 0; // Counter variable used to determine isFlush
         int straightCount = 0; // Counter variable used to determine isStraight
+        int tempCount = 0;
 
         ArrayList<Card> allCards = new ArrayList<Card>();
         ArrayList<Card> uniqueCards = new ArrayList<Card>();
         // Adding the dealers 5 cards into hand to check overall score
         for (int i = 0; i < 5; i++) {
             allCards.add(dealer.getHand().get(i));
-            if (uniqueCards.indexOf(dealer.getHand().get(i)) != -1) {
+        }
+        for (int i = 0; i < 5; i++) {
+            tempCount = 0;
+            if (uniqueCards.size() == 0) {
+                uniqueCards.add(dealer.getHand().get(i));
+            }
+            for (int j = 0; j < uniqueCards.size(); j++) {
+                if (dealer.getHand().get(i).getPoint() != uniqueCards.get(j).getPoint()) {
+                    tempCount++;
+                }
+            }
+            if (tempCount == uniqueCards.size()) {
                 uniqueCards.add(dealer.getHand().get(i));
             }
         }
         // Adding the players 2 cards into hand to check overall score
         for (int i = 0; i < 2; i++) {
             allCards.add(player.getHand().get(i));
-            if (uniqueCards.indexOf(player.getHand().get(i)) != -1) {
-                uniqueCards.add(player.getHand().get(i));
+        }
+        for (int i = 0; i < 2; i++) {
+            tempCount = 0;
+            for (int j = 0; j < uniqueCards.size(); j++) {
+                if (player.getHand().get(i).getPoint() != uniqueCards.get(j).getPoint()) {
+                    tempCount++;
+                }
+            }
+            if (tempCount == uniqueCards.size()) {
+                uniqueCards.add(dealer.getHand().get(i));
             }
         }
+
         // Bubble sort to make sure the cards are in order (by points)
         for (int i = 0; i < allCards.size(); i++) {
             for (int j = 0; j < allCards.size() - 1; j++) {
@@ -210,7 +241,7 @@ public class Game {
                 }
             }
         }
-
+        // Bubble sort for the uniqueCards arraylist doing the same thing
         for (int i = 0; i < uniqueCards.size(); i++) {
             for (int j = 0; j < uniqueCards.size() - 1; j++) {
                 if (uniqueCards.get(j).getPoint() > uniqueCards.get(j + 1).getPoint()) {
@@ -249,35 +280,35 @@ public class Game {
 
         // Check for royal flush
         if (uniqueCards.size() == 5 && isFlush && uniqueCards.get(0).getPoint() == 10) {
-            return 100;
+            return 110;
         }
         // Check for straight flush
         else if (isStraight && isFlush) {
-            return 90;
+            return 100;
         }
         // Check for Four of a Kind
         else if (maxPair == 4) {
-            return 80;
+            return 90;
         }
         // Check for Full House
         else if (uniqueCards.size() == 4 && maxPair == 3) {
-            return 70;
+            return 80;
         }
         // Checking for a flush
         else if (isFlush) {
-            return 60;
+            return 70;
         }
         // Checking for a straight
         else if (isStraight) {
-            return 50;
+            return 60;
         }
         // Checking for Three of a Kind
         else if (maxPair == 3) {
-            return 40;
+            return 50;
         }
         // Checking for multiple pairs
         else if (maxPair == 2 && uniqueCards.size() <= 5) {
-            return 30;
+            return 40;
         }
         // Checking for a single pair
         else if (maxPair == 2) {
@@ -316,18 +347,18 @@ public class Game {
             // Player 1 wins
             if (checkValue(player1) > checkValue(player2)) {
                 System.out.println("Player 1 wins!");
-                player1.addPoints(currentTotalBet);
+                player1.addCash(currentTotalBet);
             }
             // Player 2 wins
             else if (checkValue(player1) < checkValue(player2)) {
                 System.out.println("Player 2 wins!");
-                player2.addPoints(currentTotalBet);
+                player2.addCash(currentTotalBet);
             }
             // Tie
             else if (checkValue(player1) == checkValue(player2)) {
                 System.out.println("It's a tie!");
-                player1.addPoints(currentTotalBet / 2);
-                player2.addPoints(currentTotalBet / 2);
+                player1.addCash(currentTotalBet / 2);
+                player2.addCash(currentTotalBet / 2);
             }
             else {
                 System.out.println(checkValue(player1));
