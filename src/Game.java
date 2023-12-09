@@ -98,21 +98,20 @@ public class Game {
             System.out.print(" ");
         }
         System.out.println("|");
-//        if (player1.isHidden() && player2.isHidden()) {
-//            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand: ?? ??   |");
-//        }
-//        else if (player1.isHidden() && !player2.isHidden()) {
-//            System.out.println("|Hand: ?? ??   |                     ###                                                                                 ###                       |Hand: " + player2.getCard(0) + " " + player2.getCard(1) + "   |");
-//        }
-//        else if (!player1.isHidden() && player2.isHidden()) {
-//            System.out.println("|Hand: " + player1.getCard(0) + " " + player1.getCard(1) + "   |                     ###                                                                                 ###                       |Hand: ?? ??   |");
-//        }
-//        else if (!player1.isHidden() && !player2.isHidden()) {
-            System.out.println("|Hand: " + player1.getCard(0) + " " + player1.getCard(1) + "   |                     ###                                                                                 ###                       |Hand: " + player2.getCard(0) + " " + player2.getCard(1) + "   |");
-//        }
-//        else {
-//            System.out.println("|Hand:         |                     ###                                                                                 ###                       |Hand:         |");
-//        }
+        System.out.print("|Hand: ");
+        if (player1.isHidden()) {
+            System.out.print("?? ??");
+        }
+        else {
+            System.out.print(player1.getCard(0) + " " + player1.getCard(1));
+        }
+        System.out.print("   |                     ###                                                                                 ###                       |Hand: ");
+        if (player2.isHidden()) {
+            System.out.println("?? ??   |");
+        }
+        else {
+            System.out.println(player2.getCard(0) + " " + player2.getCard(1) + "   |");
+        }
         System.out.print("|Action: " + player1.getAction());
         for (int i = 0; i < 6 - player1.getAction().length(); i++) {
             System.out.print(" ");
@@ -446,6 +445,16 @@ public class Game {
                     turnNumber--;
                     currentTurn = false;
                     System.out.println("You can't do that");
+                    break;
+                case "S":
+                    player.show();
+                    turnNumber--;
+                    currentTurn = false;
+                    break;
+                case "H":
+                    player.hide();
+                    turnNumber--;
+                    currentTurn = false;
                     break;
                 default:
                     System.out.println(otherPlayer.getBet());
