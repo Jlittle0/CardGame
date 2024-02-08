@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Game Actually Works as intended (mostly) although this is after the deadline now">
+    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Game Actually Works as intended although this is after the deadline now and a lot of the variable names and documentation is still lacking.">
+      <change afterPath="$PROJECT_DIR$/Resources/Background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GameView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
     </list>
@@ -150,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702154921456</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Game Actually Works as intended although this is after the deadline now and a lot of the variable names and documentation is still lacking.">
+      <option name="closed" value="true" />
+      <created>1702155481933</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702155481933</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -163,7 +173,8 @@
     <MESSAGE value="Worked on implementation of" />
     <MESSAGE value="Finished most of the game" />
     <MESSAGE value="Game Actually Works as intended (mostly) although this is after the deadline now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Game Actually Works as intended (mostly) although this is after the deadline now" />
+    <MESSAGE value="Game Actually Works as intended although this is after the deadline now and a lot of the variable names and documentation is still lacking." />
+    <option name="LAST_COMMIT_MESSAGE" value="Game Actually Works as intended although this is after the deadline now and a lot of the variable names and documentation is still lacking." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

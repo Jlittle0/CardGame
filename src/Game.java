@@ -21,6 +21,7 @@ public class Game {
     private Player winner;
     private int minimumBet;
     public static int cardsDrawn;
+    private GameView window;
 
     public Game() {
         players = new ArrayList<Player>();
@@ -35,6 +36,7 @@ public class Game {
         player2 = new Player("");
         dealer = new Player("dealer");
         minimumBet = 50;
+        window = new GameView(this);
         // test
     }
 
