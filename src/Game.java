@@ -21,6 +21,7 @@ public class Game {
     private Player winner;
     private int minimumBet;
     public static int cardsDrawn;
+    private String background;
     private GameView window;
 
     public Game() {
@@ -510,6 +511,10 @@ public class Game {
         return false;
     }
 
+    public String getBackground() {
+        return background;
+    }
+
     public void play() {
         clearScreen();
         printWelcome();
@@ -525,6 +530,7 @@ public class Game {
                 }
                 else if (userInput.equals("2")) {
                     playPlayer();
+                    background = "game";
                 }
                 else {
                     System.out.println("Bruh");
@@ -551,5 +557,8 @@ public class Game {
         g.play();
     }
 }
+
+// Note: Switch gameState to a string variable that tracks the player's actions so that the front end knows
+// What background to switch to and what to do in general.
 
 

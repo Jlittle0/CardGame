@@ -5,12 +5,12 @@ public class GameView extends JFrame {
     private static final Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     private static final int width = 1480,
                              height = 878;
-    private static final String TITLE = "";
+    private static final String TITLE = "POKER";
     private Image background;
-    private Game g;
+    private Game a;
 
     public GameView(Game g) {
-        this.g = g;
+        this.a = g;
         this.background = new ImageIcon("Resources/Background.png").getImage();
         this.setTitle(TITLE);
         this.setSize(width, height);
@@ -31,6 +31,11 @@ public class GameView extends JFrame {
         // Drawing a string and dynamically placing it on the screen based on its length
         String str = "Welcome to Poker!";
         g.drawString(str, width / 2 - (str.length() * fontSize) / 4, height / 8);
+
+        switch (a.getBackground()) {
+            case ("game"):
+                background =
+        }
     }
 
 }

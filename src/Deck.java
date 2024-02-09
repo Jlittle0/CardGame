@@ -4,17 +4,20 @@ public class Deck {
 
     private ArrayList<Card> cards;
     private static int cardsLeft;
+    private static int numCards;
     private boolean isHidden;
 
     public Deck(String[] ranks, String[] suits, int[] points) {
        cards = new ArrayList<Card>();
        for (int i = 0; i < suits.length; i++) {
            for (int j = 0; j < ranks.length; j++) {
-               cards.add(new Card(ranks[j], suits[i], points[j]));
+               numCards++;
+               cards.add(new Card(ranks[j], suits[i], points[j], numCards));
            }
        }
        cardsLeft = cards.size();
        isHidden = true;
+       numCards = 0;
     }
     public Deck() {
         cards = new ArrayList<Card>();

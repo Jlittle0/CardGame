@@ -72,7 +72,7 @@ public class Player {
     }
 
     public void addCard(Card card) {
-        hand.add(new Card(card.getRank(), card.getSuit(), card.getPoint()));
+        hand.add(new Card(card.getRank(), card.getSuit(), card.getPoint(), card.getCardImage()));
     }
 
     public void hide() {

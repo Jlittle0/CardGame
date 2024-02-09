@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Game Actually Works as intended although this is after the deadline now and a lot of the variable names and documentation is still lacking.">
-      <change afterPath="$PROJECT_DIR$/Resources/Background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameView.java" afterDir="false" />
+    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Worked on background &amp; basic set up for the view.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +49,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Resources" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -160,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702155481933</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Worked on background &amp; basic set up for the view.">
+      <option name="closed" value="true" />
+      <created>1707414868198</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1707414868198</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -174,7 +189,8 @@
     <MESSAGE value="Finished most of the game" />
     <MESSAGE value="Game Actually Works as intended (mostly) although this is after the deadline now" />
     <MESSAGE value="Game Actually Works as intended although this is after the deadline now and a lot of the variable names and documentation is still lacking." />
-    <option name="LAST_COMMIT_MESSAGE" value="Game Actually Works as intended although this is after the deadline now and a lot of the variable names and documentation is still lacking." />
+    <MESSAGE value="Worked on background &amp; basic set up for the view." />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on background &amp; basic set up for the view." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
