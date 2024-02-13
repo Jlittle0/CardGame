@@ -32,9 +32,32 @@ public class GameView extends JFrame {
         String str = "Welcome to Poker!";
         g.drawString(str, width / 2 - (str.length() * fontSize) / 4, height / 8);
 
+        /* TODO - Make sure to use this switch statement for the entirety of the repaint method so that
+            whenever the method is run, it prints the correct screen and all the actions associated with
+            that background can also be run rather than constantly painting over based on if statements
+            for each individual background after the "base" paint method is called.
+         */
         switch (a.getBackground()) {
-            case ("game"):
-                background =
+            // Hopefully this case does everything that is already in the repaint statement
+            case ("home"):
+                background = new ImageIcon("Resources/Home.png").getImage();
+                break;
+            // Basically just print the screen with instructions on it and allow the user to go back to home screen
+            case ("instructions"):
+                background = new ImageIcon("Resources/Instructions.png").getImage();
+                break;
+            // First instance of the table that is just a table PNG and would be used for before the game
+            // actually begins. Also going to hopefully be used for the dealer.
+            case ("table"):
+                background = new ImageIcon("Resources/Table.png").getImage();
+                break;
+            // Instance of table where the game has already started and where another if statement will be nested
+            // inside to check whose turn it is and what animations to play for said turns.
+            case ("table2"):
+                background = new ImageIcon("Resources/Table2.png").getImage();
+                break;
+            default:
+                System.out.println("Something went wrong with the backgrounds");
         }
     }
 
