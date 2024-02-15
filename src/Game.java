@@ -23,6 +23,7 @@ public class Game {
     public static int cardsDrawn;
     private String background;
     private GameView window;
+    private int playerTurn;
 
     public Game() {
         players = new ArrayList<Player>();
@@ -37,6 +38,7 @@ public class Game {
         player2 = new Player("");
         dealer = new Player("dealer");
         minimumBet = 50;
+        background = "Welcome";
         window = new GameView(this);
         // test
     }
@@ -153,6 +155,8 @@ public class Game {
         System.out.println("Would you like to begin? (Y/N)");
         String userInput = input.nextLine();
         while (userInput.toUpperCase().equals("Y")) {
+            background = "game";
+            window.repaint();
             round();
             System.out.println("Would you like to play again? (Y/N)");
             userInput = input.nextLine();
@@ -189,6 +193,9 @@ public class Game {
         player2.addCard(draw());
     }
 
+    public int getCurrentPlayer() {
+        return playerTurn;
+    }
     // Returns a value corresponding to the players hand to use to check for the winner
     public int checkValue(Player player) {
         boolean isFlush = false; // Whether the current hand contains a flush
@@ -388,11 +395,13 @@ public class Game {
             if (turnNumber % 2 == 0) {
                 printTable();
                 System.out.println("Player 1's Turn:");
+                playerTurn = 1;
                 turn(player1, player2);
             }
             else {
                 printTable();
                 System.out.println("Player 2's Turn:");
+                playerTurn = 2;
                 turn(player2, player1);
             }
         }
@@ -521,6 +530,8 @@ public class Game {
         String userInput = input.nextLine();
         while (!gameState) {
             if (userInput.equals("Y") || userInput.equals("y")) {
+                background = "Welcome";
+                window.repaint();
                 gameState = true;
                 clearScreen();
                 System.out.println("Please enter the number of players (1 or 2)");
@@ -530,7 +541,8 @@ public class Game {
                 }
                 else if (userInput.equals("2")) {
                     playPlayer();
-                    background = "game";
+                    background = "table";
+                    window.repaint();
                 }
                 else {
                     System.out.println("Bruh");
@@ -541,7 +553,10 @@ public class Game {
                 System.exit(0);
             }
             else if (userInput.equals("I") || userInput.equals("i")) {
+                background = "Instructions";
+                window.repaint();
                 printInstructions();
+                userInput = input.nextLine();
             }
             else {
                 System.out.println("Please enter a valid character");

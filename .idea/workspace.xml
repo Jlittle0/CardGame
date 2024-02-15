@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Worked on background &amp; basic set up for the view.">
+    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Mainly worked on assets and ideation. Doc is now 2 pages long for all the things I need to do. Probably going to make this my final project as well.">
+      <change afterPath="$PROJECT_DIR$/Resources/Instructions.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resources/Menu.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Instructions.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,17 +39,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Resources" />
@@ -175,7 +176,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707414868198</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Stuffs">
+      <option name="closed" value="true" />
+      <created>1707519260892</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1707519260892</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Mainly worked on assets and ideation. Doc is now 2 pages long for all the things I need to do. Probably going to make this my final project as well.">
+      <option name="closed" value="true" />
+      <created>1707860423092</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1707860423092</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -190,7 +207,9 @@
     <MESSAGE value="Game Actually Works as intended (mostly) although this is after the deadline now" />
     <MESSAGE value="Game Actually Works as intended although this is after the deadline now and a lot of the variable names and documentation is still lacking." />
     <MESSAGE value="Worked on background &amp; basic set up for the view." />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on background &amp; basic set up for the view." />
+    <MESSAGE value="Stuffs" />
+    <MESSAGE value="Mainly worked on assets and ideation. Doc is now 2 pages long for all the things I need to do. Probably going to make this my final project as well." />
+    <option name="LAST_COMMIT_MESSAGE" value="Mainly worked on assets and ideation. Doc is now 2 pages long for all the things I need to do. Probably going to make this my final project as well." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -201,5 +220,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
