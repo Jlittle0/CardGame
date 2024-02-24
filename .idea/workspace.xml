@@ -4,42 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Stuffs">
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/(.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/,.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/..png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/&gt;.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/J.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/K.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/L.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/M.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/N.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/O.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/P.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/Q.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/R.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/S.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/T.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/U.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/V.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/W.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/X.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Characters/Y.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Menu/Play.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Menu/Play2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Menu/Play3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Menu/Play4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Standing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Resources/Table.png" afterDir="false" />
+    <list default="true" id="ecba93fc-33cf-40ce-8960-c41b63866de1" name="Changes" comment="Finished (mostly)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/Menu.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Menu/Menu.PNG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708026813756</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Finished (mostly)">
+      <option name="closed" value="true" />
+      <created>1708762066572</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1708762066572</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -256,7 +231,8 @@
     <MESSAGE value="Worked on background &amp; basic set up for the view." />
     <MESSAGE value="Mainly worked on assets and ideation. Doc is now 2 pages long for all the things I need to do. Probably going to make this my final project as well." />
     <MESSAGE value="Stuffs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stuffs" />
+    <MESSAGE value="Finished (mostly)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished (mostly)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

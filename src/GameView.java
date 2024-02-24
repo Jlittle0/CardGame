@@ -68,16 +68,21 @@ public class GameView extends JFrame {
                     and one of the players hasn’t resigned, the player with the best hand wins.
 
                  */
-                customStringPrinter(g, "Welcome to Joshs poker game. To start enter Y (to play) ", 30, 120, 0.75);
-                customStringPrinter(g, "(to play), 2 (to select 2 players), and Y again to", 30, 160, 0.75);
-                customStringPrinter(g, "officially start. For this game, you will be playing", 30, 200, 0.75);
-                customStringPrinter(g, "with the standard txas holdem ruleset which will be", 30, 240, 0.75);
-                customStringPrinter(g, "summarized below. In texas holdem, each palyer is ", 30, 280, 0.75);
-                customStringPrinter(g, "dealth a hand containing 2 random cards from", 30, 320, 0.75);
-                customStringPrinter(g, "separate decks. Each player doesn't know the", 30, 360, 0.75);
-                customStringPrinter(g, "others hand and before anything else happens, each", 30, 400, 0.75);
-                customStringPrinter(g, "player can choose to bet as much money as they", 30, 440, 1);
-                customStringPrinter(g, "wish. For the game to progress, the other must", 30, 480, 1);
+                customStringPrinter(g, "Instructions", 510, 40, 1.5);
+                customStringPrinter(g, "Welcome to Joshs poker game. To start enter Y (to play) 2 (to select 2", 30, 120, 0.75);
+                customStringPrinter(g, "players), and Y again to officially start. For this game, you will be playing", 30, 160, 0.75);
+                customStringPrinter(g, "with the standard texas holdem ruleset which will be summarized below.", 30, 200, 0.75);
+                customStringPrinter(g, " In texas holdem, each player is dealt a hand containing 2 random cards", 30, 240, 0.75);
+                customStringPrinter(g, " from separate decks. Each player doesn't know the others hand and", 30, 280, 0.75);
+                customStringPrinter(g, "before anything else happens, each player can choose to bet as much ", 30, 320, 0.75);
+                customStringPrinter(g, "money as they wish. Forthe game to progress, the other player must ", 30, 360, 0.75);
+                customStringPrinter(g, "accept this amount or increase it. After the gameofficially begins, each ", 30, 400, 0.75);
+                customStringPrinter(g, "of the players bets goes into the pot and the dealer places three cards", 30, 440, 0.75);
+                customStringPrinter(g, " on the table. In total, the dealer will place a total of five cards down ", 30, 480, 0.75);
+                customStringPrinter(g, "and in between each of them the players have the option to fold (give up)", 30, 520, 0.75);
+                customStringPrinter(g, " F, raise (icrease their bet) R, call C, or check (keep the bet the same)", 30, 560, 0.75);
+                customStringPrinter(g, "check. At the end of the game when all cards are down and one of the ", 30, 600, 0.75);
+                customStringPrinter(g, "players hasnot resigned, the player with the best hand wins.", 30,  640, 0.75);
 
                 break;
             // First instance of the table that is just a table PNG and would be used for before the game
@@ -186,6 +191,12 @@ public class GameView extends JFrame {
             }
             else if (input.charAt(i) == '.') {
                 g.drawImage(new ImageIcon("Resources/Characters/" + input.charAt(i) + ".png").getImage(), x + (int)(size * 26 * i), y + 11, (int)(28 * size), (int)(32 * size), this);
+            }
+            else if (input.charAt(i) == ',') {
+                g.drawImage(new ImageIcon("Resources/Characters/" + input.charAt(i) + ".png").getImage(), x + (int)(size * 26 * i), y + 16, (int)(14 * size), (int)(16 * size), this);
+            }
+            else if (input.charAt(i) == '(' || input.charAt(i) == ')') {
+                g.drawImage(new ImageIcon("Resources/Characters/" + input.charAt(i) + ".png").getImage(), x + (int)(size * 26 * i) + 2, y + 2, (int)(20 * size), (int)(28 * size), this);
             }
             else {
                 g.drawImage(new ImageIcon("Resources/Characters/" + input.charAt(i) + ".png").getImage(), x + (int)(size * 26 * i), y, (int)(28 * size), (int)(32 * size), this);
