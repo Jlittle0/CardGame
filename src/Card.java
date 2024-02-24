@@ -5,24 +5,30 @@ public class Card {
     private String rank;
     private String suit;
     private int point;
-    private Image cardImage;
+    private int num;
+    private static final Image backOfCard = new ImageIcon("").getImage();
 
     public Card(String rank, String suit, int point, int num) {
         this.rank = rank;
         this.suit = suit;
         this.point = point;
-        this.cardImage = new ImageIcon("Resources/Cards/" + num + ".png").getImage();
+        this.num = num;
     }
+
     public Card(String rank, String suit, int point, Image cardImage) {
         this.rank = rank;
         this.suit = suit;
         this.point = point;
-        this.cardImage = cardImage;
+        this.num = num;
     }
 
 
     public String getRank() {
         return rank;
+    }
+
+    public int getNum() {
+        return num;
     }
 
     public String getSuit() {
@@ -31,10 +37,6 @@ public class Card {
 
     public int getPoint() {
         return point;
-    }
-
-    public Image getCardImage() {
-        return cardImage;
     }
 
     public void setRank(String rank) {
@@ -50,7 +52,7 @@ public class Card {
     }
 
     public String toString() {
-        return rank + " of " + suit;
+        return rank + " of " + suit + "number:" + num;
     }
 
 }

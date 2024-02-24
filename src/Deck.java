@@ -3,16 +3,16 @@ import java.util.ArrayList;
 public class Deck {
 
     private ArrayList<Card> cards;
-    private static int cardsLeft;
-    private static int numCards;
+    private int cardsLeft;
+    private int numCards;
     private boolean isHidden;
 
     public Deck(String[] ranks, String[] suits, int[] points) {
        cards = new ArrayList<Card>();
-       for (int i = 0; i < suits.length; i++) {
-           for (int j = 0; j < ranks.length; j++) {
+       for (int i = 0; i < ranks.length; i++) {
+           for (int j = 0; j < suits.length; j++) {
                numCards++;
-               cards.add(new Card(ranks[j], suits[i], points[j], numCards));
+               cards.add(new Card(ranks[i], suits[j], points[i], numCards));
            }
        }
        cardsLeft = cards.size();
@@ -46,10 +46,16 @@ public class Deck {
     public void shuffle() {
         for (int i = cards.size() - 1; i > 0; i--) {
             int randomIndex = (int)(Math.random() * cards.size());
-            cards.add(i, cards.remove(randomIndex));
-            cards.add(randomIndex, cards.remove(i - 1));
+            Card temp = new Card(cards.get(randomIndex).getRank(), cards.get(randomIndex).getSuit(), cards.get(randomIndex).getPoint(), cards.get(randomIndex).getNum());
+            cards.remove(randomIndex);
+            cards.add(i, new Card(temp.getRank(), temp.getSuit(), temp.getPoint(), temp.getNum()));
+//            cards.add(randomIndex, cards.remove(i - 1));
         }
         cardsLeft = cards.size();
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
 

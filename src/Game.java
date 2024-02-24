@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,17 +20,18 @@ public class Game {
     private int currentBet;
     private int currentTotalBet;
     private static int turnNumber;
-    private Player winner;
+    private String winner;
     private int minimumBet;
     public static int cardsDrawn;
     private String background;
+    private String foreground;
     private GameView window;
     private int playerTurn;
 
     public Game() {
         players = new ArrayList<Player>();
         String[] ranks = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-        String[] suits = {"Hearts", "Clubs", "Diamonds", "Spades"};
+        String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
         int[] points = {14, 2, 3 , 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
         mainDeck = new Deck(ranks, suits, points);
         subDeck = new Deck(ranks, suits, points);
@@ -39,8 +42,13 @@ public class Game {
         dealer = new Player("dealer");
         minimumBet = 50;
         background = "Welcome";
+        foreground = "";
         window = new GameView(this);
         // test
+    }
+
+    public Deck getMainDeck() {
+        return mainDeck;
     }
 
     public void printWelcome() {
@@ -63,6 +71,10 @@ public class Game {
         System.out.println("                                                      If you would like to begin playing the game, press (Y)");
         System.out.println("                                                            if you are finished playing, press (Q)");
         System.out.println("                                                                      Instructions: (I)");
+    }
+
+    public Player getDealer() {
+        return dealer;
     }
 
     public void printTable() {
@@ -139,11 +151,6 @@ public class Game {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public String printDeck() {
-        mainDeck.shuffle();
-        subDeck.shuffle();
-        return mainDeck.toString() + subDeck.toString();
-    }
 
     public void playBot() {
         // Do later
@@ -168,7 +175,7 @@ public class Game {
         // Decides which deck to draw from based on the current number of cards drawn
         // since I'm using two different decks to deal cards with
         cardsDrawn++;
-        if (cardsDrawn % 2 == 1) {
+        if (turnNumber % 2 == 0) {
             return mainDeck.deal();
         }
         else {
@@ -178,12 +185,14 @@ public class Game {
     public void resetTable() {
         // Resets all the players' hands for the new round
         player1.resetHand();
+        player1.setAction("Idle");
         player2.resetHand();
+        player2.setAction("Idle");
         dealer.resetHand();
         // Resets bets back down to $0
         player1.setBet(0);
         player2.setBet(0);
-        // Shuffles the decks which resets them
+
         mainDeck.shuffle();
         subDeck.shuffle();
         // Gives two cards to each player for their own hand for the next round
@@ -196,6 +205,38 @@ public class Game {
     public int getCurrentPlayer() {
         return playerTurn;
     }
+
+    public String getAction(int playerNumber) {
+        if (playerNumber == 1) {
+            return player1.getAction();
+        }
+        else {
+                return player2.getAction();
+        }
+    }
+
+    public String getCards(int player) {
+        if (player == 1) {
+            if (player1.isHidden()) {
+                return "?? ??";
+            }
+            else {
+                return(player1.getCard(0) + " " + player1.getCard(1));
+            }
+        }
+        if (player2.isHidden()) {
+            return "?? ??";
+        }
+        else {
+            return(player2.getCard(0) + " " + player2.getCard(1));
+        }
+    }
+
+    public String getWinnerString() {
+        return winner;
+    }
+
+
     // Returns a value corresponding to the players hand to use to check for the winner
     public int checkValue(Player player) {
         boolean isFlush = false; // Whether the current hand contains a flush
@@ -332,7 +373,9 @@ public class Game {
     public void round() {
         // Represents a single "round" of poker
         roundOver = false;
+        winner = "";
         // Resets the table
+
         resetTable();
         // Begings the first set of turns
         turnCycle();
@@ -356,16 +399,19 @@ public class Game {
             // Player 1 wins
             if (checkValue(player1) > checkValue(player2)) {
                 System.out.println("Player 1 wins!");
+                winner = "Player One Wins";
                 player1.addCash(currentTotalBet);
             }
             // Player 2 wins
             else if (checkValue(player1) < checkValue(player2)) {
                 System.out.println("Player 2 wins!");
+                winner = "Player Two Wins";
                 player2.addCash(currentTotalBet);
             }
             // Tie
             else if (checkValue(player1) == checkValue(player2)) {
                 System.out.println("It's a tie!");
+                winner = "It Is A Tie";
                 player1.addCash(currentTotalBet / 2);
                 player2.addCash(currentTotalBet / 2);
             }
@@ -375,6 +421,7 @@ public class Game {
                 System.out.println("Something went wrong");
             }
         }
+        window.repaint();
     }
 
     public int checkLength(int num) {
@@ -404,6 +451,7 @@ public class Game {
                 playerTurn = 2;
                 turn(player2, player1);
             }
+            window.repaint();
         }
         // Reset turnEnd booleans used for checking whether the turns are over or not
         player1.setTurnEnd(false);
@@ -474,6 +522,7 @@ public class Game {
                     System.exit(0);
                     break;
             }
+            window.repaint();
         }
     }
 
@@ -524,6 +573,20 @@ public class Game {
         return background;
     }
 
+    public String getForeground() {
+        return foreground;
+    }
+
+    public void setForeGround(String foreground) {
+        this.foreground = foreground;
+    }
+
+    public Player getPlayers(int num) {
+        if (num == 1)
+                return player1;
+        return player2;
+    }
+
     public void play() {
         clearScreen();
         printWelcome();
@@ -531,6 +594,7 @@ public class Game {
         while (!gameState) {
             if (userInput.equals("Y") || userInput.equals("y")) {
                 background = "Welcome";
+                foreground = "Modes";
                 window.repaint();
                 gameState = true;
                 clearScreen();
@@ -540,9 +604,9 @@ public class Game {
                     playBot();
                 }
                 else if (userInput.equals("2")) {
-                    playPlayer();
                     background = "table";
                     window.repaint();
+                    playPlayer();
                 }
                 else {
                     System.out.println("Bruh");
@@ -568,7 +632,6 @@ public class Game {
 
     public static void main(String[] args) {
         Game g = new Game();
-        System.out.println(g.printDeck());
         g.play();
     }
 }
